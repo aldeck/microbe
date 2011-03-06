@@ -10,15 +10,54 @@
 
 
 #include <TextView.h>
+#include <Region.h>
 
 #include "PythonPlugin.h"
 
 #include <vector>
 
-struct TextRange {
-	TextRange(int32 _start, int32 _finish) { start = _start; finish = _finish; };
+static const rgb_color kBlack = { 0, 0, 0, 255 };
+static const rgb_color kDarkGrey = { 100, 100, 100, 255 };
+static const rgb_color kHaikuGreen = { 42, 131, 36, 255 };
+static const rgb_color kHaikuOrange = { 255, 69, 0, 255 };
+static const rgb_color kHaikuYellow = { 255, 176, 0, 255 };
+static const rgb_color kLinkBlue = { 80, 80, 200, 255 };
+
+
+class TextRange {
+public:
+	TextRange(BTextView* textView, int32 _start, int32 _finish, rgb_color _color) {
+		start = _start;
+		finish = _finish;
+		fTextView = textView;
+		fTextView->GetTextRegion(start, finish, &fRegion);
+		
+		fTextView->SetFontAndColor(start, finish, be_bold_font, B_FONT_ALL, &kLinkBlue);
+		
+		color = _color;
+	};
+	
+	//const BRegion* Region() const {
+	//	return &fRegion;
+	//}
+	
+	void DrawContour(BView* view) {
+		int rectCount = fRegion.CountRects();
+	    for (int i = 0; i < rectCount; i++) {			
+	    	view->SetHighColor(color);
+	    	view->StrokeRect(fRegion.RectAt(i));
+	    }
+	}
+	
+
 	int32 start;
 	int32 finish;
+	rgb_color color;
+	
+	
+private:
+	BRegion fRegion;
+	BTextView* fTextView;	
 };	
 
 

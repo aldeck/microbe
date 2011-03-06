@@ -12,11 +12,6 @@
 
 #include <stdio.h>
 
-static const rgb_color kDarkGrey = { 100, 100, 100, 255 };
-static const rgb_color kHaikuGreen = { 42, 131, 36, 255 };
-static const rgb_color kHaikuOrange = { 255, 69, 0, 255 };
-static const rgb_color kHaikuYellow = { 255, 176, 0, 255 };
-static const rgb_color kLinkBlue = { 80, 80, 200, 255 };
 
 
 MainView::MainView(BRect frame)
@@ -61,13 +56,14 @@ MainView::FrameResized(float width, float height)
 void
 MainView::_Contour(int32 start, int32 finish)
 {
-	fTextRanges.push_back(new TextRange(start, finish));
-	SetFontAndColor(start, finish, be_plain_font, B_FONT_ALL, &kLinkBlue);
+	fTextRanges.push_back(new TextRange(this, start, finish, kHaikuGreen));
 }
 
 void
 MainView::_ClearContours()
 {
+	SetFontAndColor(0, TextLength(), be_plain_font, B_FONT_ALL, &kBlack);
+	
 	TextRangeList::iterator it = fTextRanges.begin();
 	for(; it != fTextRanges.end(); it++) {
 		delete (*it);
@@ -81,13 +77,7 @@ MainView::_DrawTextRanges()
 {
 	TextRangeList::iterator it = fTextRanges.begin();
 	for(; it != fTextRanges.end(); it++) {
-		BRegion region;		
-	    GetTextRegion((*it)->start, (*it)->finish, &region);
-	    for (int i = 0; i < region.CountRects(); i++) {
-	    	SetHighColor(255,0,0);
-	    	//printf("strok\n");
-	    	StrokeRect(region.RectAt(i));
-	    }
+		(*it)->DrawContour(this);
 	}	
 }
 
@@ -111,6 +101,8 @@ void
 MainView::InsertText(const char *text, int32 length, int32 offset,
 	const text_run_array *runs)
 {
+	SetFontAndColor(be_plain_font, B_FONT_ALL, &kBlack);
+	
 	BTextView::InsertText(text, length, offset, runs);
 	fPythonPlugin.Func1(Text()/*text*/);	
 }
