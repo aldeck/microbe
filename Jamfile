@@ -1,0 +1,12 @@
+SubDir HAIKU_TOP src apps microbe ;
+
+UsePrivateHeaders shared ;
+
+Application Microbe :
+	App.cpp
+	MainWindow.cpp
+	MainView.cpp
+
+	: be $(TARGET_LIBSTDC++)
+	: Microbe.rdef
+;
