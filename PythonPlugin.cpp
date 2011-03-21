@@ -13,7 +13,7 @@ static PyMethodDef sMicrobeModuleMethods[] = {
 };
 
 
-PythonPlugin::PythonPlugin(MainView* mainView)
+PythonPlugin::PythonPlugin(MainView* mainView, const char* name)
 	:
 	fMainView(mainView)
 {
@@ -21,18 +21,17 @@ PythonPlugin::PythonPlugin(MainView* mainView)
 	
 	Py_Initialize();
 	PyRun_SimpleString("import sys");
-	PyRun_SimpleString("sys.path.append(\"./\");");
+	PyRun_SimpleString("sys.path.append(\"./plugins\");");
         
-	Py_InitModule("microbe", sMicrobeModuleMethods);
+	Py_InitModule("microbe", sMicrobeModuleMethods);	
 	
-	char* moduleName = "testplugin";	
-	PyObject *pName = PyString_FromString(moduleName); // TODO Error checking	
+	PyObject *pName = PyString_FromString(name); // TODO Error checking	
 	pModule = PyImport_Import(pName);
     Py_DECREF(pName);
     
     if (pModule == NULL) {
         PyErr_Print();
-        fprintf(stderr, "Failed to load \"%s\"\n", moduleName);
+        fprintf(stderr, "Failed to load \"%s\"\n", name);
     } else {    	
         pFunc1 = PyObject_GetAttrString(pModule, "func1");	
     	if (pFunc1 == NULL || !PyCallable_Check(pFunc1)) {
@@ -91,11 +90,12 @@ PythonPlugin::_MicrobeSelect(PyObject *self, PyObject *args)
 {
 	int start = -1;
 	int end = -1;
+	int color = -1;
 	
-    if(!PyArg_ParseTuple(args, "ii:select", &start, &end))
+    if(!PyArg_ParseTuple(args, "iii:select", &start, &end, &color))
         return NULL;
         
-    fMainView->_Contour(start + 1, end);
+    fMainView->_Contour(start, end, color);
         
     return Py_BuildValue("i", 0);	
 }

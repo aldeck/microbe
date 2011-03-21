@@ -15,7 +15,7 @@ class MainView;
 
 class PythonPlugin {
 public:
-					PythonPlugin(MainView* mainView);
+					PythonPlugin(MainView* mainView, const char* name);
 					~PythonPlugin();
 					
 	void			Func1(const char *text);
