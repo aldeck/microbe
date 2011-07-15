@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+
+#
+# Copyright 2011, Alexandre Deckner (alex@zappotek.com)
+# Distributed under the terms of the MIT License.
+#
+
 ## Copyright (C) 2008 Ben Smith <benjamin.coder.smith@gmail.com>
 
 ##    This file is part of pyctags.
@@ -14,7 +20,7 @@
 ##    GNU General Public License for more details.
 
 ##    You should have received a copy of the GNU Lesser General Public License
-##    and the GNU Lesser General Public Licens along with pyctags.  If not, 
+##    and the GNU Lesser General Public Licens along with pyctags.  If not,
 ##    see <http://www.gnu.org/licenses/>.
 
 
@@ -56,13 +62,13 @@ for tag in tagfile.tags:
 
 
 def func1(text):
-	
-    for name, regexp in regexs.items():                
+
+    for name, regexp in regexs.items():
         matches = regexp.finditer(text)
         colors = { 'm' : 1, 'f' : 2, 's' : 3, 'c' : 4, 't' : 5, 'v' : 6 , 'd' : 7}
         for match in matches:
             microbe.select(match.start(), match.end(), colors[name.split('####')[1]])
             #print "match", match.start(), match.end()
-        
+
     return "ok"
 

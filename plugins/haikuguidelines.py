@@ -1,6 +1,9 @@
+#
+# Copyright 2011, Alexandre Deckner (alex@zappotek.com)
+# Distributed under the terms of the MIT License.
+#
+
 import microbe, re
-
-
 
 cppRules = {}
 cppRules["Line over 80 char"] = re.compile('[^\n]{81,}')
@@ -26,27 +29,27 @@ cppRules["Bad pointer/reference style"] \
 #cppRules["-Comment 1"] = re.compile('[^/]/\*(.|[\r\n])*?\*/')
 #cppRules["-Comment 2"] = re.compile('(//)[^\n]*')
 
-def func0(a):	
-	print "python '" + a + "'"	
+def func0(a):
+	print "python '" + a + "'"
 	print microbe.select(7, 12);
 	return "yes"
-	
+
 def func00(text):
     regexp = re.compile('[^/]/\*(.|[\r\n])*?\*/')
     matches = regexp.finditer(text)
     for match in matches:
         microbe.select(match.start(), match.end())
         print "match", match.start(), match.end()
-        
+
     return "ok"
-    
+
 def func1(text):
-    for name, regexp in cppRules.items():                
+    for name, regexp in cppRules.items():
         matches = regexp.finditer(text)
         for match in matches:
             microbe.select(match.start(), match.end())
             #print "match", match.start(), match.end()
-        
-    return "ok"    
-    
+
+    return "ok"
+
 

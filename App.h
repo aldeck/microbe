@@ -1,17 +1,17 @@
 /*
- * Copyright 2011, Haiku Inc. All rights reserved.
+ * Copyright 2011, Alexandre Deckner (alex@zappotek.com)
  * Distributed under the terms of the MIT License.
  *
- * Authors:
- * 		Alexandre Deckner <alex@zappotek.com>
  */
-
 #ifndef _APP_H
 #define _APP_H
 
+
 #include <Application.h>
 
+
 class BWindow;
+
 
 class App : public BApplication {
 
@@ -21,9 +21,10 @@ public:
 
 	virtual	void				AboutRequested();
 	virtual void				MessageReceived(BMessage *message);
-	
+
 protected:
 	BWindow*					fMainWindow;
 };
+
 
 #endif	// _APP_H

@@ -1,10 +1,9 @@
 /*
- * Copyright 2011, Haiku Inc. All rights reserved.
+ * Copyright 2011, Alexandre Deckner (alex@zappotek.com)
  * Distributed under the terms of the MIT License.
  *
- * Authors:
- * 		Alexandre Deckner <alex@zappotek.com>
  */
+
 
 #include "MainView.h"
 
@@ -13,11 +12,10 @@
 #include <stdio.h>
 
 
-
 MainView::MainView(BRect frame)
 	:
 	//BTextView("MainView")
-	BTextView(frame, "textview", frame, 
+	BTextView(frame, "textview", frame,
 		B_FOLLOW_ALL, B_FRAME_EVENTS | B_WILL_DRAW),
 	fPythonPlugin(this, "colors")
 {
@@ -61,27 +59,27 @@ MainView::_Contour(int32 start, int32 finish, int32 c)
 	switch (c) {
 	case 1:
 		color = kDarkGrey;
-		break;	
+		break;
 	case 2:
 		color = kHaikuGreen;
-		break;	
+		break;
 	case 3:
 		color = kHaikuOrange;
-		break;	
+		break;
 	case 4:
 		color = kHaikuYellow;
-		break;	
+		break;
 	case 5:
 		color = kDarkGrey;
-		break;	
+		break;
 	case 6:
 		color = kLinkBlue;
 		break;
 	case 7:
 		color = kPurple;
-		break;	
+		break;
 	default:
-		color = kLinkBlue;	
+		color = kLinkBlue;
 	};
 	fTextRanges.push_back(new TextRange(this, start, finish, color));
 }
@@ -90,7 +88,7 @@ void
 MainView::_ClearContours()
 {
 	SetFontAndColor(0, TextLength(), be_plain_font, B_FONT_ALL, &kBlack);
-	
+
 	TextRangeList::iterator it = fTextRanges.begin();
 	for (; it != fTextRanges.end(); it++) {
 		delete (*it);
@@ -105,14 +103,14 @@ MainView::_DrawTextRanges()
 	TextRangeList::iterator it = fTextRanges.begin();
 	for (; it != fTextRanges.end(); it++) {
 		(*it)->DrawContour(this);
-	}	
+	}
 }
 
 
 void
 MainView::Select(int32 start, int32 finish)
 {
-	BTextView::Select(start, finish);	
+	BTextView::Select(start, finish);
 }
 
 
@@ -129,9 +127,9 @@ MainView::InsertText(const char *text, int32 length, int32 offset,
 	const text_run_array *runs)
 {
 	SetFontAndColor(be_plain_font, B_FONT_ALL, &kBlack);
-	
+
 	BTextView::InsertText(text, length, offset, runs);
 	bigtime_t start = system_time();
-	fPythonPlugin.Func1(Text()/*text*/);	
+	fPythonPlugin.Func1(Text()/*text*/);
 	printf("script time: %lims\n", (system_time() - start) / 1000);
 }

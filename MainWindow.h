@@ -1,16 +1,16 @@
 /*
- * Copyright 2011, Haiku Inc. All rights reserved.
+ * Copyright 2011, Alexandre Deckner (alex@zappotek.com)
  * Distributed under the terms of the MIT License.
  *
- * Authors:
- * 		Alexandre Deckner <alex@zappotek.com>
  */
 #ifndef _MAINWINDOW_H
 #define _MAINWINDOW_H
 
+
 #include <Window.h>
 
 class MainView;
+
 
 class MainWindow : public BWindow {
 public:
@@ -23,5 +23,6 @@ public:
 protected:
 			MainView*			fMainView;
 };
+
 
 #endif	// _MAINWINDOW_H

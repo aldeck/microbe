@@ -1,3 +1,8 @@
+#
+# Copyright 2011, Alexandre Deckner (alex@zappotek.com)
+# Distributed under the terms of the MIT License.
+#
+
 import microbe, re
 
 
@@ -9,30 +14,30 @@ class TextRange :
 		start = _start
 		end = _end
 		color = _color
-		
-textRanges = []		
 
-"""		
-def func0(a):	
-	print "python '" + a + "'"	
+textRanges = []
+
+"""
+def func0(a):
+	print "python '" + a + "'"
 	print microbe.select(7, 12);
 	return "yes"
-	
+
 def func00(text):
     regexp = re.compile('[^/]/\*(.|[\r\n])*?\*/')
     matches = regexp.finditer(text)
     for match in matches:
         microbe.select(match.start(), match.end())
         print "match", match.start(), match.end()
-        
+
     return "ok"
 """
-    
+
 # textChanged
 def func1(text):
     for range in textRanges:
         microbe.select(range.start, range.end, range.color)
-       
-    return "ok"    
-    
+
+    return "ok"
+
 

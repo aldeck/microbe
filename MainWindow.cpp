@@ -1,10 +1,9 @@
 /*
- * Copyright 2009, Haiku Inc. All rights reserved.
+ * Copyright 2011, Alexandre Deckner (alex@zappotek.com)
  * Distributed under the terms of the MIT License.
  *
- * Authors:
- * 		Alexandre Deckner <alex@zappotek.com>
  */
+
 
 #include "MainWindow.h"
 
@@ -46,4 +45,3 @@ MainWindow::MessageReceived(BMessage *message)
 			BWindow::MessageReceived(message);
 	}
 }
-

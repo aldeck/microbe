@@ -8,7 +8,7 @@ SRCS = App.cpp
 SRCS += MainWindow.cpp
 SRCS += MainView.cpp
 SRCS += PythonPlugin.cpp
-LIBS = be python2.6 stdc++
+LIBS = be python2.6 #stdc++
 
 RDEFS = Microbe.rdef
 
