@@ -32,7 +32,7 @@ import os
 
 source_files = list()
 
-for (dirpath, dirs, files) in os.walk("/Data/microbe/"):
+for (dirpath, dirs, files) in os.walk("/Big2/microbe/"):
     for f in files:
         if f[-4:] == '.cpp' or f[-2:] == ".h" :
             source_files.append(os.path.join(dirpath, f))
