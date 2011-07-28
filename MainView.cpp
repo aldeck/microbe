@@ -19,10 +19,33 @@ MainView::MainView(BRect frame)
 	//BTextView("MainView")
 	BTextView(frame, "textview", frame,
 		B_FOLLOW_ALL, B_FRAME_EVENTS | B_WILL_DRAW),
-	fPythonPlugin(this, "ctags")
+	fPythonPlugin(this, "klong")
 {
 	fHighlighter = new Highlighter(this);
 	SetStylable(true);
+	SetText(
+		"// FIXME: Find nicer way to drop builtins and other cruft.\n"
+		"int start_decl;\n"
+	    "\n"
+		"struct s0 {\n"
+		"  int a;\n"
+		"  int b;\n"
+		"};\n"
+		"\n"
+		"struct s1;\n"
+		"\n"
+		"void f0(int a0, int a1) {\n"
+		"  int l0, l1;\n"
+		"\n"
+		"  if (a0)\n"
+		"    return;\n"
+		"\n"
+		"  for (;;) {\n"
+		"    break;\n"
+		"  }\n"
+		"}\n"
+		"}\n"
+	);
 }
 
 
