@@ -23,12 +23,18 @@ MainView::MainView(BRect frame)
 {
 	fHighlighter = new Highlighter(this);
 	SetStylable(true);
-	SetText("hello comment ca va?");
 }
 
 
 MainView::~MainView()
 {
+}
+
+
+status_t
+MainView::Load(const entry_ref& ref)
+{
+
 }
 
 

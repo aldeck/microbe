@@ -12,18 +12,22 @@
 
 #include <vector>
 
+#include <math.h>
+
 
 class BTextView;
 class TextRange;
 
 
 static const rgb_color kBlack = { 0, 0, 0, 255 };
-static const rgb_color kDarkGrey = { 0, 100, 100, 255 };
-static const rgb_color kHaikuGreen = { 42, 131, 36, 255 };
-static const rgb_color kHaikuOrange = { 255, 69, 0, 255 };
-static const rgb_color kHaikuYellow = { 255, 176, 0, 255 };
-static const rgb_color kLinkBlue = { 80, 80, 200, 255 };
-static const rgb_color kPurple = { 80, 0, 80, 255 };
+
+
+inline rgb_color
+FloatRGB(float r, float g, float b);
+
+
+rgb_color
+HSVToRGB(float hue, float saturation, float value);
 
 
 class Highlighter {
@@ -42,7 +46,8 @@ private:
 	typedef std::vector<TextRange*> TextRangeList;
 
 			TextRangeList		fTextRanges;
+			rgb_color*			fPalette;
 };
 
 
-#endif	// _MAINVIEW_H
+#endif	// _HIGHLIGHTER_H

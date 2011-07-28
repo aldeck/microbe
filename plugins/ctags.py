@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 #
 # Copyright 2011, Alexandre Deckner (alex@zappotek.com)
 # Distributed under the terms of the MIT License.
@@ -54,15 +52,19 @@ import microbe, re
 
 regexs = {}
 for tag in tagfile.tags:
-	#print tag.name, tag.line_number, tag.extensions['kind']
-	#print tag.name + "####" + tag.extensions['kind']
-	regexs[tag.name + "####" + tag.extensions['kind']] = re.compile(tag.name)
+    print tag.file, tag.name, tag.pattern, tag.line_number, tag.extensions['kind']
+    #print tag.name + "####" + tag.extensions['kind']
+    regexs[tag.name + "####" + tag.extensions['kind']] = re.compile(tag.name)
 
-
-
+def func2(text):
+    lines = text.split('\n');
+    for tag in tagfile.tags:
+        if tag.file != "MainWindow.cpp":
+            print tag.file, tag.name, tag.pattern, tag.line_number, tag.extensions['kind']
+            #print "line:", lines[tag.line_number]
+	return "ok"
 
 def func1(text):
-
     for name, regexp in regexs.items():
         matches = regexp.finditer(text)
         colors = { 'm' : 1, 'f' : 2, 's' : 3, 'c' : 4, 't' : 5, 'v' : 6 , 'd' : 7}

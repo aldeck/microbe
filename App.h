@@ -27,4 +27,7 @@ protected:
 };
 
 
+extern const char* kSignature;
+
+
 #endif	// _APP_H

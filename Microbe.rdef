@@ -5,7 +5,7 @@
  */
 
 
-resource(1, "BEOS:APP_SIG") #'MIMS' "application/x-vnd.Haiku-Microbe";
+resource(1, "BEOS:APP_SIG") #'MIMS' "application/x-vnd.Uzzl-Microbe";
 
 resource app_version {
 	major  = 1,

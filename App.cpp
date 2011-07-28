@@ -12,9 +12,12 @@
 #include "MainWindow.h"
 
 
+const char* kSignature = "application/x-vnd.Uzzl-Microbe";
+
+
 App::App()
 	:
-	BApplication("application/x-vnd.Haiku-Microbe")
+	BApplication(kSignature)
 {
 	BRect frame(50, 50, 640 + 50, 480 + 50);
 	const char *title = "Microbe";

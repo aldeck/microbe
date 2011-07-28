@@ -10,7 +10,7 @@ SRCS += MainWindow.cpp
 SRCS += MainView.cpp
 SRCS += PythonPlugin.cpp
 SRCS += TextRange.cpp
-LIBS = be python2.6 #stdc++
+LIBS = be python2.6 tracker #stdc++
 
 RDEFS = Microbe.rdef
 

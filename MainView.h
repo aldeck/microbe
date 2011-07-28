@@ -19,25 +19,28 @@ class Highlighter;
 
 class MainView : public BTextView {
 public:
-					MainView(BRect frame);
-					~MainView();
-	virtual void	Draw(BRect updateRect);
-	//void			_Contour(int32 start, int32 finish, int32 color);
-	//void			_ClearContours();
-	void			_DrawTextRanges();
-	Highlighter*	GetHighlighter() const;
+								MainView(BRect frame);
+								~MainView();
 
-	virtual void	AttachedToWindow();
-	virtual void	FrameResized(float width, float height);
+	virtual void				Draw(BRect updateRect);
 
-	virtual void	Select(int32 start, int32 finish);
-	virtual void	DeleteText(int32 start, int32 finish);
-	virtual void	InsertText(const char *text, int32 length, int32 offset,
-						const text_run_array *runs = NULL);
+			status_t			Load(const entry_ref& ref);
+
+			void				_DrawTextRanges();
+			Highlighter*		GetHighlighter() const;
+
+	virtual void				AttachedToWindow();
+	virtual void				FrameResized(float width, float height);
+
+	virtual void				Select(int32 start, int32 finish);
+	virtual void				DeleteText(int32 start, int32 finish);
+	virtual void				InsertText(const char *text,
+									int32 length, int32 offset,
+									const text_run_array *runs = NULL);
 
 private:
-			Highlighter* fHighlighter;
-			PythonPlugin fPythonPlugin;
+			Highlighter* 		fHighlighter;
+			PythonPlugin 		fPythonPlugin;
 };
 
 

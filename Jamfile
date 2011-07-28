@@ -7,6 +7,6 @@ Application Microbe :
 	MainWindow.cpp
 	MainView.cpp
 
-	: be $(TARGET_LIBSTDC++)
+	: be tracker #$(TARGET_LIBSTDC++)
 	: Microbe.rdef
 ;
